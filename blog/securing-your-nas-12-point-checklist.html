@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Securing Your NAS: A 12-Point Checklist | BoltProof</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Synology on the open internet is a target. A properly hardened Synology is a fortress. Here are the 12 security configurations every NAS deployment needs.">
+  <meta property="og:title" content="Securing Your NAS: A 12-Point Checklist">
+  <meta property="og:description" content="The 12 security configurations every Synology deployment needs — from 2FA to firewall rules to backup air-gapping.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://boltproof.com/blog/securing-your-nas-12-point-checklist.html">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0e1420; --bg-elevated: #151c2c; --bg-card: #18202e;
+      --border: #243044; --indigo: #4f46e5; --indigo-light: #6366f1;
+      --text: #e8ecf4; --text-muted: #8893a8; --text-dim: #5d6985;
+      --white: #fff; --radius: 12px; --max-width: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection { background: var(--indigo); color: var(--white); }
+    a { color: var(--indigo-light); text-decoration: none; }
+    a:hover { color: var(--white); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.9rem; font-weight: 600; color: var(--text-muted);
+      margin-bottom: 32px; transition: color 0.25s;
+    }
+    .back-link:hover { color: var(--white); }
+    article { max-width: var(--max-width); margin: 0 auto; padding: 48px 24px 80px; }
+    .article-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--indigo-light); margin-bottom: 16px;
+      padding: 4px 12px; background: rgba(79,70,229,0.15); border-radius: 100px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+      letter-spacing: -0.02em; color: var(--white); line-height: 1.15; margin-bottom: 16px;
+    }
+    .article-meta {
+      font-size: 0.85rem; color: var(--text-dim);
+      margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.4rem; font-weight: 700; color: var(--white);
+      letter-spacing: -0.01em; margin: 36px 0 14px;
+    }
+    h2 .num {
+      display: inline-block; width: 36px; height: 36px; line-height: 36px;
+      text-align: center; background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      color: var(--white); border-radius: 50%; font-size: 0.9rem; margin-right: 12px;
+      vertical-align: middle;
+    }
+    h3 { font-size: 1.15rem; font-weight: 600; color: var(--white); margin: 28px 0 10px; }
+    p { margin-bottom: 20px; color: var(--text-muted); font-size: 1.02rem; }
+    strong { color: var(--text); font-weight: 600; }
+    code {
+      background: var(--bg-card); padding: 2px 8px; border-radius: 6px;
+      font-size: 0.9em; color: var(--indigo-light); font-family: 'SF Mono', 'Monaco', monospace;
+    }
+    ul, ol { margin: 16px 0 24px 24px; color: var(--text-muted); }
+    li { margin-bottom: 10px; }
+    blockquote {
+      border-left: 3px solid var(--indigo); padding: 16px 24px;
+      margin: 28px 0; background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 1.05rem; color: var(--text); font-style: italic;
+    }
+    .warning {
+      padding: 20px 24px; margin: 24px 0;
+      background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius); font-size: 0.95rem; color: var(--text);
+    }
+    .warning strong { color: #f87171; }
+    .cta-box {
+      margin-top: 48px; padding: 32px;
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+      border: 1px solid var(--border); border-radius: var(--radius); text-align: center;
+    }
+    .cta-box h3 { color: var(--white); margin-bottom: 12px; }
+    .cta-box p { color: var(--text-muted); margin-bottom: 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius);
+      background: var(--indigo); color: var(--white);
+      font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.25s;
+    }
+    .btn:hover { background: var(--indigo-light); color: var(--white); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <article>
+    <a href="../index.html" class="back-link">← Back to BoltProof</a>
+    <span class="article-tag">Security</span>
+    <h1>Securing Your NAS: A 12-Point Checklist</h1>
+    <div class="article-meta">Published September 2026 · 11 min read · BoltProof Insights</div>
+
+    <p>A Synology NAS sitting on the open internet is a target. Shod indexes it within hours. Bot scanners probe the DSM port constantly. And if you've left the default admin password, enabled QuickConnect with a guessable ID, or forwarded port 5000 without a reverse proxy — congratulations, you're already in someone's exploitation queue.</p>
+
+    <p>A properly hardened Synology, on the other hand, is a fortress. It's the difference between leaving your front door wide open and having a security system, deadbolt, and a camera. The problem is that most NAS deployments fall somewhere in between — partially secured, with one or two critical gaps that negate the rest of the effort.</p>
+
+    <p>Here's the 12-point checklist we apply to every Synology we deploy. Follow it and your NAS will be substantially more secure than the vast majority of devices on the internet.</p>
+
+    <div class="warning">
+      <strong>Before you begin:</strong> This guide assumes you're running DSM 7.2 or later. Some settings and menu paths differ between versions. If you're on DSM 6.x, upgrade first — running an outdated DSM is itself a security vulnerability.
+    </div>
+
+    <h2><span class="num">1</span>Enable Two-Factor Authentication</h2>
+    <p>This is the single most important step on this list. Enable 2FA (TOTP-based, via an app like Authy, 1Password, or Google Authenticator) for <strong>every account</strong> on the NAS — not just admin. A compromised password without the second factor is useless to an attacker.</p>
+    <p>In DSM, go to <strong>Control Panel → Security → Account → 2FA</strong> and enforce it for all users. If you're using LDAP or Active Directory, enforce 2FA at the directory level as well. No exceptions for "convenience" accounts.</p>
+
+    <h2><span class="num">2</span>Disable the Default Admin Account</h2>
+    <p>The default <code>admin</code> account is the most-targeted username in the Synology ecosystem. Create a new admin-level account with a non-obvious name, then disable the default <code>admin</code> account entirely. Do the same for any default service accounts.</p>
+    <p>This eliminates an entire class of brute-force attacks that assume the username <code>admin</code> exists. Every attacker's wordlist starts with it. Remove it from the equation.</p>
+
+    <h2><span class="num">3</span>Never Expose DSM Directly to the Internet</h2>
+    <p>This is the mistake that causes the most catastrophic breaches. If your NAS is accessible by forwarding port 5000 (or 5001 for HTTPS) through your router to the internet, <strong>stop right now</strong> and close it. There is no scenario in which this is safe, even with a strong password and 2FA.</p>
+    <p>Instead, use one of these approaches for remote access:</p>
+    <ul>
+      <li><strong>Tailscale or WireGuard VPN</strong> — mesh VPN that creates an encrypted tunnel to your NAS without exposing any ports. This is our recommended approach for most businesses.</li>
+      <li><strong>Reverse proxy with TLS termination</strong> — if you must expose web services, put them behind a reverse proxy (Synology's built-in Reverse Proxy or Traefik) with proper SSL certificates, authentication, and IP allowlisting.</li>
+      <li><strong>DSM SRM VPN Plus</strong> — if you're using a Synology Router, the built-in VPN server provides a clean remote access path.</li>
+    </ul>
+    <p>The principle is simple: if it's not behind a VPN or authenticated reverse proxy, it shouldn't be reachable from the internet. Period.</p>
+
+    <h2><span class="num">4</span>Configure the Firewall</h2>
+    <p>DSM includes a built-in firewall that most people leave unconfigured. Don't be most people. In <strong>Control Panel → Security → Firewall</strong>, create rules that:</p>
+    <ul>
+      <li>Deny all traffic by default</li>
+      <li>Allow traffic only from your VPN subnet (e.g., Tailscale's 100.x.x.x range)</li>
+      <li>Allow traffic from specific trusted IP ranges if needed</li>
+      <li>Log denied connections so you can monitor for attack patterns</li>
+    </ul>
+    <p>A firewall that allows everything is the same as no firewall. A firewall that denies by default and allows only what you explicitly specify is what actually protects you.</p>
+
+    <h2><span class="num">5</span>Keep DSM and Packages Updated</h2>
+    <p>Synology releases DSM updates regularly, and many of them contain security patches for vulnerabilities that are being actively exploited. <strong>Enable automatic DSM updates</strong> in <strong>Control Panel → Update &amp; Restore → DSM Update</strong> and set it to install critical updates automatically.</p>
+    <p>The same applies to installed packages — Container Manager, Active Backup, Surveillance Station, and every other package you've installed. Check <strong>Package Center → Updates</strong> monthly, or better, enable auto-update where available.</p>
+
+    <h2><span class="num">6</span>Disable Unused Services</h2>
+    <p>Every service running on your NAS is a potential attack surface. If you don't use Telnet, SSH, FTP, or AFP — disable them. In <strong>Control Panel → Terminal &amp; SNMP</strong>, disable any protocols you don't actively use. In <strong>File Services</strong>, disable SMB1 (it's insecure and deprecated) and any file protocols you're not using.</p>
+    <p>If SSH is needed (and for our remote management, it is), configure it with key-based authentication only — disable password authentication entirely.</p>
+
+    <h2><span class="num">7</span>Implement a 3-2-1 Backup Strategy</h2>
+    <p>A hardened NAS is still a single device. If it's destroyed by fire, flood, theft, or a ransomware attack that compromises the entire network — your primary storage is gone. The 3-2-1 rule:</p>
+    <ul>
+      <li><strong>3</strong> copies of your data</li>
+      <li><strong>2</strong> different storage media (e.g., NAS + external USB drive)</li>
+      <li><strong>1</strong> copy off-site (cloud, another physical location, or a second NAS)</li>
+    </ul>
+    <p>Configure Synology's built-in Hyper Backup to a cloud provider (Backblaze B2 is our preferred choice — it's S3-compatible and significantly cheaper than AWS), and set up Snapshot Replication to a second NAS or an external drive that's rotated off-site. Test the restore process at least quarterly. An untested backup is not a backup — it's a hope.</p>
+
+    <h2><span class="num">8</span>Enable Snapshot Replication</h2>
+    <p>Snapshots are point-in-time copies of your data that can be restored in seconds. They're the single best defense against ransomware because they let you roll back to a state before the encryption happened.</p>
+    <p>In <strong>Storage Manager → Snapshot</strong>, configure hourly snapshots with at least 7 days of retention for active data, and daily snapshots with 30 days of retention. For critical datasets, consider 15-minute snapshots. The storage overhead is minimal (snapshots only store the deltas), and the recovery value is enormous.</p>
+    <p>Then, replicate those snapshots to a second NAS or an external location. If the primary NAS is compromised, the replicated snapshots on a physically separate device are your last line of defense.</p>
+
+    <h2><span class="num">9</span>Use Strong, Unique Passwords</h2>
+    <p>This should be obvious, but it's worth stating: every account on your NAS needs a strong, unique password. Not a variation of a password you use elsewhere. Not a "company standard" that's the same across all systems. <strong>Unique per account, generated by a password manager, at least 16 characters</strong>.</p>
+    <p>Pair this with point #1 (2FA) and point #2 (no default admin) and your authentication layer is solid. Without it, the other 11 points on this checklist are built on sand.</p>
+
+    <h2><span class="num">10</span>Configure Auto-Block and Login Limits</h2>
+    <p>DSM can automatically block IP addresses that fail login attempts repeatedly. In <strong>Control Panel → Security → Account → Auto Block</strong>, configure it to block IPs after 5 failed attempts within a 5-minute window, and keep them blocked for at least 24 hours.</p>
+    <p>This won't stop a determined distributed attack, but it will throttle opportunistic brute-force attempts and give you visibility into who's trying. Pair this with login notification emails so you're alerted to repeated failures in real time.</p>
+
+    <h2><span class="num">11</span>Secure Shared Folders with Proper Permissions</h2>
+    <p>The principle of least privilege applies to file shares too. In <strong>Control Panel → Shared Folder</code>, review every shared folder and ensure that:</p>
+    <ul>
+      <li>Access is granted only to users who genuinely need it</li>
+      <li>Read-only access is used where full read-write isn't required</li>
+      <li>Guest access is disabled (unless you have a specific, deliberate reason for it)</li>
+      <li>Encryption is enabled for sensitive folders (Synology supports folder-level encryption)</li>
+    </ul>
+    <p>Also, enable <strong>Advanced Sharing Permissions</strong> and verify that the NTFS/NFS permissions at the file level match the share-level permissions. Mismatches between share and file permissions are a common source of unintended data exposure.</p>
+
+    <h2><span class="num">12</span>Air-Gap Your Backups</h2>
+    <p>This is the point that most guides miss. If your backup is always connected to the same network as your primary storage, ransomware that compromises your network can encrypt both — primary and backup — simultaneously. That's game over.</p>
+    <p>An <strong>air gap</strong> means your backup is physically or logically disconnected from the production network at least some of the time. Options include:</p>
+    <ul>
+      <li>An external USB drive that's connected only during backup runs and disconnected afterward</li>
+      <li>A second NAS on a separate VLAN that's only reachable during replication windows</li>
+      <li>Cloud backup that uses a separate set of credentials stored outside the primary environment</li>
+    </ul>
+    <p>The goal is to ensure that even a total compromise of your primary NAS doesn't compromise all your recovery options. If every backup is reachable from the compromised system, you don't have a backup — you have a target.</p>
+
+    <h2>Going Beyond: The Next Level</h2>
+
+    <p>Once you've implemented all 12 points, you're in the top 5% of Synology deployments from a security standpoint. If you want to go further, consider:</p>
+    <ul>
+      <li><strong>Network segmentation</strong> — Put your NAS on a dedicated VLAN with firewall rules controlling exactly which devices can reach it and on which ports.</li>
+      <li><strong>Certificate-based authentication for all services</strong> — Use Let's Encrypt certificates via DSM's built-in ACME client or DNS-01 challenges for all web-facing services.</li>
+      <li><strong>Regular security audits</strong> — Review firewall logs, login attempts, and access patterns monthly. Anomalies are often the first sign of a compromised account.</li>
+      <li><strong>Incident response plan</strong> — Document what happens if (when) something goes wrong. Who to call, how to isolate, how to recover. A plan you've never tested is worthless.</li>
+    </ul>
+
+    <blockquote>Security isn't a state — it's a process. The checklist above gets you to a strong baseline. But devices age, vulnerabilities emerge, and configurations drift. The businesses that stay secure are the ones that treat security as ongoing maintenance, not a one-time setup.</blockquote>
+
+    <h2>The Cost of Getting It Wrong</h2>
+
+    <p>Ransomware on a Synology is not hypothetical. We've seen it. The typical scenario: an attacker gains access through an exposed DSM port or a compromised client device on the same network, encrypts the primary storage, and then targets the backups. Without snapshots and air-gapped backups, the business is faced with paying a ransom (often 5-6 figures), losing the data entirely, or rebuilding from whatever fragmented backups survive.</p>
+    <p>The 12-point checklist above takes 2-4 hours to implement on a properly set up NAS. The alternative — recovering from a ransomware incident — takes weeks, costs orders of magnitude more, and may still result in permanent data loss.</p>
+    <p>Security is cheap. Insecurity is expensive. The math is that simple.</p>
+
+    <div class="cta-box">
+      <h3>Not sure if your NAS is secure?</h3>
+      <p>Book a free discovery call. We'll review your current configuration, identify any gaps in the 12-point checklist, and give you a clear security assessment — no obligation, no upsell pressure.</p>
+      <a href="../index.html#contact" class="btn">Book a security review →</a>
+    </div>
+  </article>
+</body>
+</html>

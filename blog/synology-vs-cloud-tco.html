@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Synology vs Cloud: The Total Cost of Ownership | BoltProof</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A 10TB dataset in AWS S3 costs $2,300/year. The same data on a Synology costs $1,800 once. We break down the real numbers — storage, egress, and hidden costs.">
+  <meta property="og:title" content="Synology vs Cloud: The Total Cost of Ownership">
+  <meta property="og:description" content="We break down the real numbers — storage, egress, support, and hidden costs nobody puts in the marketing.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://boltproof.com/blog/synology-vs-cloud-tco.html">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0e1420; --bg-elevated: #151c2c; --bg-card: #18202e;
+      --border: #243044; --indigo: #4f46e5; --indigo-light: #6366f1;
+      --text: #e8ecf4; --text-muted: #8893a8; --text-dim: #5d6985;
+      --white: #fff; --radius: 12px; --max-width: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection { background: var(--indigo); color: var(--white); }
+    a { color: var(--indigo-light); text-decoration: none; }
+    a:hover { color: var(--white); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.9rem; font-weight: 600; color: var(--text-muted);
+      margin-bottom: 32px; transition: color 0.25s;
+    }
+    .back-link:hover { color: var(--white); }
+    article { max-width: var(--max-width); margin: 0 auto; padding: 48px 24px 80px; }
+    .article-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--indigo-light); margin-bottom: 16px;
+      padding: 4px 12px; background: rgba(79,70,229,0.15); border-radius: 100px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+      letter-spacing: -0.02em; color: var(--white); line-height: 1.15; margin-bottom: 16px;
+    }
+    .article-meta {
+      font-size: 0.85rem; color: var(--text-dim);
+      margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 700; color: var(--white);
+      letter-spacing: -0.01em; margin: 40px 0 16px;
+    }
+    h3 { font-size: 1.2rem; font-weight: 600; color: var(--white); margin: 32px 0 12px; }
+    p { margin-bottom: 20px; color: var(--text-muted); font-size: 1.02rem; }
+    strong { color: var(--text); font-weight: 600; }
+    ul, ol { margin: 16px 0 24px 24px; color: var(--text-muted); }
+    li { margin-bottom: 10px; }
+    blockquote {
+      border-left: 3px solid var(--indigo); padding: 16px 24px;
+      margin: 28px 0; background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 1.05rem; color: var(--text); font-style: italic;
+    }
+    table {
+      width: 100%; border-collapse: collapse; margin: 24px 0;
+      font-size: 0.9rem; overflow-x: auto; display: block;
+    }
+    th {
+      text-align: left; padding: 12px 16px; color: var(--white);
+      font-weight: 600; border-bottom: 2px solid var(--indigo);
+      background: var(--bg-card);
+    }
+    td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted);
+    }
+    .tco-table { display: block; overflow-x: auto; }
+    .cta-box {
+      margin-top: 48px; padding: 32px;
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+      border: 1px solid var(--border); border-radius: var(--radius); text-align: center;
+    }
+    .cta-box h3 { color: var(--white); margin-bottom: 12px; }
+    .cta-box p { color: var(--text-muted); margin-bottom: 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius);
+      background: var(--indigo); color: var(--white);
+      font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.25s;
+    }
+    .btn:hover { background: var(--indigo-light); color: var(--white); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <article>
+    <a href="../index.html" class="back-link">← Back to BoltProof</a>
+    <span class="article-tag">Cost Analysis</span>
+    <h1>Synology vs Cloud: The Total Cost of Ownership</h1>
+    <div class="article-meta">Published September 2026 · 9 min read · BoltProof Insights</div>
+
+    <p>When someone hands you a cloud storage bill and a Synology quote, the comparison seems straightforward. One is a monthly number that never ends. The other is a capital expense plus some drives. But the real comparison — the one that matters when you're making infrastructure decisions for a business — is more nuanced than either number suggests. Let's break down the actual total cost of ownership (TCO) over a five-year horizon, with real numbers.</p>
+
+    <h2>The scenario</h2>
+
+    <p>Let's use a realistic small-to-mid business scenario: <strong>10TB of active business data</strong>, growing at roughly 20% per year. You need it accessible from multiple office locations, backed up with 3-2-1 redundancy, and recoverable within hours of any incident. This is a very common profile — legal firms, design agencies, accounting practices, mid-sized professional services.</p>
+
+    <h2>Cloud: AWS S3 Standard</h2>
+
+    <p>Let's start with the most common cloud object storage choice. The numbers below are approximate but based on current AWS pricing for a US-east-1 deployment.</p>
+
+    <div class="tco-table">
+      <table>
+        <thead>
+          <tr><th>Cost Component</th><th>Year 1</th><th>Year 5 (cumulative)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>S3 Standard storage (10TB → 20TB)</td><td>$2,300</td><td>$13,800</td></tr>
+          <tr><td>GET/PUT/LIST API requests</td><td>$360</td><td>$2,160</td></tr>
+          <tr><td>Egress (data transfer out)</td><td>$1,200</td><td>$7,200</td></tr>
+          <tr><td>S3 Lifecycle / replication</td><td>$200</td><td>$1,200</td></tr>
+          <tr><td>Backup (S3 Glacier Deep Archive)</td><td>$460</td><td>$2,760</td></tr>
+          <tr><td>Cross-region replication</td><td>$230</td><td>$1,380</td></tr>
+          <tr><td>Support (Business tier)</td><td>$550</td><td>$3,300</td></tr>
+          <tr style="border-top: 2px solid var(--indigo);"><td><strong>Total</strong></td><td><strong>$5,300</strong></td><td><strong>$31,800</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>That's roughly <strong>$31,800 over five years</strong> for cloud storage alone — and this assumes you don't need any professional services support, data migration assistance, or custom tooling. It also assumes you're not using any compute alongside the storage, which would add considerably more.</p>
+
+    <blockquote>The thing about cloud bills is that they're additive. Each line item seems small — $200 here, $300 there — but they compound across every service you touch. By year five, you're paying for storage, egress, requests, replication, lifecycle transitions, support, and half a dozen features you adopted along the way.</blockquote>
+
+    <h2>On-prem: Synology RS1221+ with expansion</h2>
+
+    <p>Now let's price the equivalent on a Synology rackmount NAS designed for small business environments. We'll use the RS1221+ (a 4-bay 1U rackmount) with an RX415 expansion unit for future growth, plus enterprise-grade drives and SSD caching.</p>
+
+    <div class="tco-table">
+      <table>
+        <thead>
+          <tr><th>Cost Component</th><th>Year 1</th><th>Year 5 (cumulative)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Synology RS1221+ (NAS unit)</td><td>$1,100</td><td>$1,100 (one-time)</td></tr>
+          <tr><td>Synology RX415 (expansion)</td><td>$700</td><td>$700 (one-time)</td></tr>
+          <tr><td>8× 16TB Seagate IronWolf drives</td><td>$2,400</td><td>$2,400 (replace yr 5)</td></tr>
+          <tr><td>2× 1TB NVMe SSD (cache)</td><td>$200</td><td>$400 (replace yr 4)</td></tr>
+          <tr><td>Backup drives (external)</td><td>$400</td><td>$800</td></tr>
+          <tr><td>Off-site cloud sync (Backblaze B2)</td><td>$300</td><td>$1,800</td></tr>
+          <tr><td>Professional setup & config</td><td>$1,500</td><td>$1,500 (one-time)</td></tr>
+          <tr><td>Care retainer (monthly maintenance)</td><td>$3,540</td><td>$17,700</td></tr>
+          <tr><td>Drive replacements (yr 5)</td><td>$0</td><td>$1,200</td></tr>
+          <tr style="border-top: 2px solid var(--indigo);"><td><strong>Total</strong></td><td><strong>$10,140</strong></td><td><strong>$27,600</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>$27,600 over five years</strong>, including professional setup, ongoing maintenance, and off-site cloud sync for disaster recovery. That's $4,200 less than pure cloud — and the difference grows more pronounced beyond five years because the cloud costs keep compounding while the on-prem hardware is already purchased.</p>
+
+    <h2>What the numbers don't capture</h2>
+
+    <p>The raw dollar comparison tells most of the story, but a few qualitative factors tilt the decision further:</p>
+
+    <h3>Performance</h3>
+    <p>Local NVMe storage with SSD caching delivers random I/O at 5-10x the throughput of cloud object storage. For any workload involving databases, large files, or real-time access — this isn't a luxury. It's the difference between a snappy system and one where your team waits on every save.</p>
+
+    <h3>Predictability</h3>
+    <p>Cloud bills are a variable cost that scales with usage — which means they're hard to budget. On-prem is a fixed capital expense followed by predictable maintenance. Finance teams can plan around it. Cloud spending, particularly in growing businesses, tends to surprise people.</p>
+
+    <h3>Data sovereignty</h3>
+    <p>If you're subject to data residency requirements — UAE PDPL, EU GDPR, industry-specific regulations — keeping primary data on-prem eliminates an entire category of compliance risk. Cloud providers offer region selection, but you're still trusting a third party with data residency claims.</p>
+
+    <h3>Exit costs</h3>
+    <p>Migrating 20TB out of S3 to another provider costs roughly $2,000 in egress fees alone — assuming you can move it at all. With on-prem, you own the hardware. Moving to a different strategy means backing up the data and redeploying. No vendor permission required.</p>
+
+    <h2>When cloud still wins</h2>
+
+    <p>This isn't an argument that on-prem is always better. Cloud storage is genuinely the right choice when:</p>
+    <ul>
+      <li>Your data volume is small (under 2TB) and not growing fast</li>
+      <li>Your team is fully distributed and needs access from everywhere with no infrastructure to manage</li>
+      <li>You need burst capacity — temporary spikes that on-prem hardware can't absorb</li>
+      <li>You have zero IT capacity and genuinely cannot manage hardware</li>
+      <li>Your workload is cloud-native by design (serverless, event-driven, tightly coupled to cloud APIs)</li>
+    </ul>
+    <p>For these scenarios, the simplicity of cloud outweighs the cost. But for stable, growing data that sits at the core of your business — the case for on-prem is strong and getting stronger.</p>
+
+    <h2>The hybrid sweet spot</h2>
+
+    <p>The most cost-effective architecture for most small-to-mid businesses in 2026 isn't cloud-only or on-prem-only. It's <strong>hybrid</strong>: a Synology as primary storage for performance and cost control, with automated sync to a low-cost cloud provider like Backblaze B2 for off-site backup and disaster recovery. You get the performance and economics of on-prem with the geographic redundancy of cloud — at a fraction of the cost of either approach alone.</p>
+
+    <p>In our TCO model above, we included $300/year for Backblaze B2 sync. That's the entire cloud cost for the hybrid approach — under $1,500 over five years for off-site redundancy, compared to $31,800 for cloud-primary storage. Same protection, different architecture, dramatically lower cost.</p>
+
+    <h2>The real decision</h2>
+
+    <p>The Synology-vs-cloud question isn't really about technology. It's about whether you want to rent your infrastructure or own it. Both have valid use cases. But if you're storing more than a few terabytes of business-critical data, if your team works from a fixed location (or a few), and if you value predictable costs and ownership — the math says on-prem, and the math is right.</p>
+
+    <div class="cta-box">
+      <h3>Want a TCO analysis for your specific setup?</h3>
+      <p>Book a free discovery call. We'll estimate your current cloud costs, model the on-prem equivalent, and give you a clear recommendation — whether or not you choose to work with us.</p>
+      <a href="../index.html#contact" class="btn">Book a discovery call →</a>
+    </div>
+  </article>
+</body>
+</html>

@@ -2,1263 +2,1438 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BoltProof – Synology Specialist, Backup & Small-Environment IT</title>
+  <title>BoltProof — The World's Premier Synology Consultancy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="BoltProof provides secure backup, Synology NAS design, networking, Microsoft 365, websites, domain setup and small-environment IT support for home offices and small businesses.">
+  <meta name="description" content="BoltProof is the world's #1 Synology consultancy. We design, build, secure, and maintain Synology NAS environments for businesses worldwide. Fixed-fee projects, care retainer, free discovery call.">
+  <meta name="theme-color" content="#0e1420">
 
-  <!-- Favicons (you uploaded these into /assets) -->
+  <!-- Favicons -->
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 
   <!-- Social preview -->
-  <meta property="og:title" content="BoltProof – Synology Specialist, Backup & Small-Environment IT">
-  <meta property="og:description" content="Secure backup, Synology environments, networking, Microsoft 365, websites, domains and small-environment IT support.">
+  <meta property="og:title" content="BoltProof — The World's Premier Synology Consultancy">
+  <meta property="og:description" content="Synology setup, backup & recovery, security hardening, and ongoing care for businesses worldwide. Free discovery call. Fixed-fee projects.">
   <meta property="og:image" content="assets/BoltProof%20Original%20Logo.png">
   <meta property="og:type" content="website">
-
-  <style>
-    :root {
-      --bolt-blue: #215EAB;
-      --bolt-dark: #23262F;
-      --bg-soft: #F5F7FB;
-      --card-bg: #FFFFFF;
-      --accent: #3D8BFF;
-
-      --bolt-dark-text: #E5E7EB;
-      --bg-dark: #020617;
-      --card-bg-dark: #020617;
-      --border-dark: #1E293B;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    /* FIX: anchor links + sticky header offset */
-    html {
-      scroll-padding-top: 120px;
-    }
-
-    section[id] {
-      scroll-margin-top: 120px;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--bolt-dark);
-      background: var(--bg-soft);
-      line-height: 1.6;
-      transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--bolt-dark-text);
-    }
-
-    a {
-      color: var(--bolt-blue);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    body.dark a {
-      color: #60A5FA;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(245,247,251,0.96);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid #E2E8F0;
-      transition: background 0.25s ease, border-color 0.25s ease;
-    }
-
-    body.dark header {
-      background: rgba(2,6,23,0.96);
-      border-color: #1F2937;
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-wrap img {
-      height: 80px;
-      display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      color: inherit;
-      font-weight: 500;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: none;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--bolt-blue);
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(33,94,171,0.25);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent);
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(61,139,255,0.3);
-    }
-
-    body.dark .btn-primary {
-      box-shadow: 0 8px 18px rgba(15,23,42,0.8);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--bolt-blue);
-      border: 1px solid #CBD5F5;
-    }
-
-    .btn-ghost:hover {
-      background: #E3ECFF;
-    }
-
-    body.dark .btn-ghost {
-      color: #E5E7EB;
-      border-color: #1F2937;
-    }
-
-    main {
-      padding-bottom: 48px;
-    }
-
-    section {
-      padding: 56px 0;
-    }
-
-    h1, h2, h3 {
-      margin: 0 0 16px;
-      color: inherit;
-    }
-
-    h1 {
-      font-size: 38px;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    h2 {
-      font-size: 28px;
-      letter-spacing: -0.02em;
-    }
-
-    h3 {
-      font-size: 18px;
-    }
-
-    .muted {
-      color: #6B7280;
-    }
-
-    body.dark .muted {
-      color: #9CA3AF;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 72px 0 40px;
-      background:
-        radial-gradient(circle at top left, rgba(102,153,255,0.25), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(56,189,248,0.18), transparent 60%),
-        var(--bg-soft);
-    }
-
-    body.dark .hero {
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(45,212,191,0.18), transparent 60%),
-        var(--bg-dark);
-    }
-
-    body.dark .hero-card-shell h1 {
-      text-shadow:
-        0 0 18px rgba(59,130,246,0.6),
-        0 0 40px rgba(34,197,94,0.35);
-    }
-
-    .scroll-down-wrapper {
-      margin-top: 26px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .scroll-down {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 58px;
-      border-radius: 999px;
-      border: 1.5px solid rgba(148,163,184,0.9);
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      opacity: 0.8;
-      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .scroll-down:hover {
-      opacity: 1;
-      transform: translateY(2px);
-      border-color: rgba(59,130,246,0.9);
-    }
-
-    .scroll-down-arrow {
-      width: 6px;
-      height: 6px;
-      border-left: 2px solid rgba(15,23,42,0.9);
-      border-bottom: 2px solid rgba(15,23,42,0.9);
-      transform: rotate(-45deg);
-      position: absolute;
-      top: 16px;
-      animation: scrollArrow 1.4s infinite ease-in-out;
-    }
-
-    body.dark .scroll-down {
-      border-color: rgba(51,65,85,0.9);
-    }
-
-    body.dark .scroll-down-arrow {
-      border-left-color: rgba(226,232,240,0.95);
-      border-bottom-color: rgba(226,232,240,0.95);
-    }
-
-    @keyframes scrollArrow {
-      0% {
-        transform: translateY(0) rotate(-45deg);
-        opacity: 0.2;
-      }
-      40% {
-        opacity: 1;
-      }
-      80% {
-        transform: translateY(14px) rotate(-45deg);
-        opacity: 0;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(0) rotate(-45deg);
-      }
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-card-shell {
-      background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      padding: 20px 22px;
-      box-shadow: 0 18px 45px rgba(15,23,42,0.18);
-      border: 1px solid rgba(148,163,184,0.45);
-      backdrop-filter: blur(10px);
-    }
-
-    body.dark .hero-card-shell {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(30,64,175,0.9);
-      box-shadow: 0 24px 55px rgba(0,0,0,0.85);
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      background: rgba(227,236,255,0.9);
-      color: var(--bolt-blue);
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    body.dark .hero-tag {
-      background: rgba(15,23,42,0.9);
-      color: #93C5FD;
-    }
-
-    .hero-points {
-      margin: 16px 0 10px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .hero-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: #4B5563;
-    }
-
-    body.dark .hero-points li {
-      color: #9CA3AF;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .hero-side {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .hero-card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-      font-size: 14px;
-      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      border: 1px solid #E5E7EB;
-    }
-
-    body.dark .hero-card {
-      background: #020617;
-      border-color: var(--border-dark);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.7);
-    }
-
-    .hero-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0 0;
-    }
-
-    .hero-card li {
-      margin-bottom: 4px;
-      color: #4B5563;
-    }
-
-    body.dark .hero-card li {
-      color: #9CA3AF;
-    }
-
-    .stack-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:6px;
-    }
-
-    .stack-pill {
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.9);
-      border:1px solid rgba(148,163,184,0.6);
-      font-size:11px;
-      font-weight:600;
-    }
-
-    .stack-pill span {
-      font-size:13px;
-    }
-
-    body.dark .stack-pill {
-      background:rgba(15,23,42,0.95);
-      border-color:rgba(51,65,85,0.9);
-    }
-
-    /* Cards & grids */
-    .section-alt {
-      background: radial-gradient(circle at top right, rgba(148,163,184,0.08), transparent 55%);
-    }
-
-    body.dark .section-alt {
-      background: radial-gradient(circle at top right, rgba(30,64,175,0.3), transparent 55%);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 10px 30px rgba(15,23,42,0.06);
-      border: 1px solid #E5E7EB;
-      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.12s ease;
-      font-size: 14px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.12);
-      border-color: rgba(148,163,184,0.9);
-    }
-
-    .card p {
-      margin: 0;
-      color: #4B5563;
-    }
-
-    body.dark .card {
-      background: var(--card-bg-dark);
-      border-color: var(--border-dark);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    }
-
-    body.dark .card:hover {
-      border-color:#334155;
-      box-shadow:0 20px 60px rgba(0,0,0,0.9);
-    }
-
-    body.dark .card p {
-      color: #9CA3AF;
-    }
-
-    .card-icon {
-      width:32px;
-      height:32px;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(227,236,255,0.9);
-      margin-bottom:8px;
-      font-size:17px;
-    }
-
-    body.dark .card-icon {
-      background:rgba(15,23,42,0.9);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #EFF6FF;
-      color: var(--bolt-blue);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    body.dark .badge {
-      background: #0F172A;
-      color: #93C5FD;
-    }
-
-    .section-header {
-      margin-bottom: 24px;
-      max-width: 640px;
-      position:relative;
-    }
-
-    .section-kicker {
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:0.16em;
-      color:#9CA3AF;
-      margin-bottom:6px;
-    }
-
-    body.dark .section-kicker {
-      color:#6B7280;
-    }
-
-    .section-underline {
-      position:absolute;
-      bottom:-6px;
-      left:0;
-      width:64px;
-      height:3px;
-      border-radius:999px;
-      background:linear-gradient(90deg,#3B82F6,#22C55E);
-      opacity:0.85;
-    }
-
-    .section-header p {
-      margin: 10px 0 0;
-      color: #4B5563;
-    }
-
-    body.dark .section-header p {
-      color: #9CA3AF;
-    }
-
-    /* Steps */
-    .steps {
-      counter-reset: step;
-    }
-
-    .step {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 18px;
-      align-items: flex-start;
-    }
-
-    .step-number {
-      counter-increment: step;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: #E3ECFF;
-      color: var(--bolt-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    body.dark .step-number {
-      background: #0F172A;
-      color: #93C5FD;
-    }
-
-    .step-content h3 {
-      margin: 0 0 4px;
-      font-size: 15px;
-    }
-
-    .step-content p {
-      margin: 0;
-      font-size: 14px;
-      color: #4B5563;
-    }
-
-    body.dark .step-content p {
-      color: #9CA3AF;
-    }
-
-    /* Lists inside cards (scenarios/contact) */
-    .card ul {
-      margin: 4px 0 0;
-      padding-left: 18px;
-      color: #4B5563;
-    }
-
-    body.dark .card ul {
-      color: #9CA3AF;
-    }
-
-    /* Theme toggle */
-    .theme-toggle {
-      border-radius: 999px;
-      border: 1px solid #CBD5F5;
-      padding: 6px 12px;
-      font-size: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #FFFFFF;
-      cursor: pointer;
-    }
-
-    body.dark .theme-toggle {
-      border-color: #1F2937;
-      background: #020617;
-      color: #E5E7EB;
-    }
-
-    footer {
-      border-top: 1px solid #E5E7EB;
-      padding: 12px 0 18px;
-      font-size: 12px;
-      color: #6B7280;
-      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-    }
-
-    body.dark footer {
-      border-color: #1F2937;
-      color: #9CA3AF;
-      background: #020617;
-    }
-
-    .footer-row {
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:4px;
-    }
-
-    .footer-privacy {
-      font-size:11px;
-      opacity:0.9;
-    }
-
-    /* Floating WhatsApp button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      z-index: 999;
-      width: 62px;
-      height: 62px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.06);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
-    }
-
-    .whatsapp-float img {
-      width: 32px;
-      height: 32px;
-    }
-
-    body.dark .whatsapp-float {
-      box-shadow: 0 10px 32px rgba(0,0,0,0.55);
-    }
-
-    @media (max-width: 880px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      section {
-        padding: 40px 0;
-      }
-
-      h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+  <meta property="og:url" content="https://boltproof.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BoltProof — The World's Premier Synology Consultancy">
+  <meta name="twitter:description" content="Synology setup, backup & recovery, security hardening, and ongoing care for businesses worldwide.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "BoltProof",
-    "description": "Synology specialist. Backup, storage, networking, Microsoft 365, websites, domains and small-environment IT for home offices and small businesses.",
+    "description": "The world's premier Synology consultancy. We design, build, secure, and maintain Synology NAS environments for businesses worldwide.",
     "url": "https://boltproof.com",
     "email": "elias@boltproof.com",
-    "telephone": "+971585109454",
-    "areaServed": ["UAE", "Worldwide"],
-    "knowsAbout": ["Synology NAS", "Backup and recovery", "Data storage", "Microsoft 365", "Networking", "Small business IT"],
-    "sameAs": ["https://cal.com/boltproof"]
+    "areaServed": "Worldwide",
+    "knowsAbout": ["Synology", "DSM", "NAS", "Backup", "Disaster Recovery", "Tailscale", "WireGuard", "Docker", "Virtualization", "Active Directory"],
+    "offerCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Synology Services",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Synology Setup & Lifecycle"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Backup & Recovery Design"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Security Hardening"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ongoing Care Retainer"}}
+      ]
+    }
   }
   </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e1420;
+      --bg-elevated: #151c2c;
+      --bg-card: #18202e;
+      --bg-card-hover: #1e2839;
+      --border: #243044;
+      --border-hover: #364967;
+      --indigo: #4f46e5;
+      --indigo-light: #6366f1;
+      --indigo-glow: rgba(79, 70, 229, 0.15);
+      --indigo-glow-strong: rgba(99, 102, 241, 0.25);
+      --text: #e8ecf4;
+      --text-muted: #8893a8;
+      --text-dim: #5d6985;
+      --white: #ffffff;
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --max-width: 1200px;
+      --header-height: 72px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--indigo); color: var(--white); }
+
+    a { color: var(--indigo-light); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--white); }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    section { padding: 100px 0; position: relative; }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      z-index: 100;
+      background: rgba(14, 20, 32, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+    header.scrolled { background: rgba(14, 20, 32, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .nav-brand .logo-mark {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--white);
+      box-shadow: 0 0 20px var(--indigo-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--indigo);
+      color: var(--white);
+      box-shadow: 0 4px 14px var(--indigo-glow);
+    }
+    .btn-primary:hover {
+      background: var(--indigo-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px var(--indigo-glow-strong);
+      color: var(--white);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card);
+      color: var(--white);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      padding: 10px 18px;
+    }
+    .btn-ghost:hover { color: var(--white); background: var(--bg-card); }
+    .btn-lg { padding: 16px 32px; font-size: 1rem; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--header-height);
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, var(--indigo-glow), transparent),
+                  radial-gradient(ellipse 60% 40% at 80% 60%, rgba(79,70,229,0.08), transparent);
+    }
+
+    .hero-content {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--indigo-light), #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p.subtitle {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .trust-signals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .trust-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .trust-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .trust-card .stat {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .trust-card .stat .accent { color: var(--indigo-light); }
+    .trust-card .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 60px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--indigo-light);
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== SERVICES GRID ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--indigo), var(--indigo-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px var(--indigo-glow);
+    }
+    .service-icon svg { width: 26px; height: 26px; stroke: var(--white); fill: none; stroke-width: 2; }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== FEATURES SHOWCASE (Top 10) ===== */
+    #features { background: var(--bg-elevated); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card:hover {
+      border-color: var(--indigo);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 24px var(--indigo-glow);
+    }
+    .feature-number {
+      position: absolute;
+      top: 18px; right: 20px;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      transition: color var(--transition);
+    }
+    .feature-card:hover .feature-number { color: var(--indigo-glow); }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: all var(--transition);
+    }
+    .feature-card:hover .feature-icon {
+      background: var(--indigo);
+      border-color: var(--indigo);
+    }
+    .feature-icon svg { width: 22px; height: 22px; stroke: var(--indigo-light); fill: none; stroke-width: 2; transition: stroke var(--transition); }
+    .feature-card:hover .feature-icon svg { stroke: var(--white); }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+    .feature-card p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== PROCESS ===== */
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      counter-reset: step;
+    }
+    .process-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+      transition: all var(--transition);
+    }
+    .process-step:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .process-step .step-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 16px var(--indigo-glow);
+    }
+    .process-step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .process-step p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials { background: var(--bg-elevated); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+    }
+    .testimonial-stars svg { width: 18px; height: 18px; fill: #fbbf24; }
+    .testimonial-body {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .testimonial-author .avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .testimonial-author .name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .testimonial-author .role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .testimonial-rep {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* ===== DEMO CTA ===== */
+    #demo-cta {
+      text-align: center;
+    }
+    .demo-cta-box {
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 64px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-cta-box::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--indigo-glow), transparent 60%);
+      pointer-events: none;
+    }
+    .demo-cta-box > * { position: relative; z-index: 1; }
+    .demo-cta-box .demo-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px var(--indigo-glow-strong);
+    }
+    .demo-cta-box .demo-icon svg { width: 32px; height: 32px; stroke: var(--white); fill: none; stroke-width: 2; }
+    .demo-cta-box h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .demo-cta-box p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    /* ===== BLOG ===== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .blog-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      color: inherit;
+    }
+    .blog-card .blog-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--indigo-light);
+      padding: 4px 12px;
+      background: var(--indigo-glow);
+      border-radius: 100px;
+      width: fit-content;
+    }
+    .blog-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .blog-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .blog-card .blog-read {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--indigo-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap var(--transition);
+    }
+    .blog-card:hover .blog-read { gap: 10px; }
+
+    /* ===== PRICING ===== */
+    #pricing { background: var(--bg-elevated); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: all var(--transition);
+    }
+    .pricing-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .pricing-card.featured {
+      border-color: var(--indigo);
+      box-shadow: 0 0 30px var(--indigo-glow);
+    }
+    .pricing-card .plan-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .pricing-card .plan-price {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-card .plan-price .unit {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .pricing-card .plan-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .pricing-card ul li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-card ul li:last-child { border-bottom: none; }
+    .pricing-card ul li::before {
+      content: '✓';
+      color: var(--indigo-light);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: all var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-card:hover {
+      border-color: var(--indigo);
+      transform: translateY(-4px);
+      box-shadow: 0 0 24px var(--indigo-glow);
+    }
+    .contact-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-card:hover .contact-icon {
+      background: var(--indigo);
+      border-color: var(--indigo);
+    }
+    .contact-icon svg { width: 26px; height: 26px; stroke: var(--indigo-light); fill: none; stroke-width: 2; transition: stroke var(--transition); }
+    .contact-card:hover .contact-icon svg { stroke: var(--white); }
+
+    .contact-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .contact-card .contact-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .contact-card .contact-action {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--indigo-light);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .nav-brand { margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* ===== MOBILE NAV ===== */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.mobile-open {
+        display: flex;
+        position: fixed;
+        top: var(--header-height);
+        left: 0; right: 0;
+        flex-direction: column;
+        background: var(--bg-elevated);
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 60px 0; }
+      .container { padding: 0 18px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .trust-signals { grid-template-columns: 1fr 1fr; }
+      .demo-cta-box { padding: 40px 24px; }
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="nav">
-      <div class="nav-left">
-        <div class="logo-wrap">
-          <img src="assets/BoltProof%20Original%20Logo.png" alt="BoltProof logo">
-        </div>
-        <div>
-          <strong>BoltProof</strong><br>
-          <span class="muted" style="font-size:12px;">Backup • Synology • Small-Environment IT</span>
-        </div>
-      </div>
-      <div class="nav-links">
-        <a href="#about">About</a>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header id="header">
+    <nav class="nav">
+      <a href="#" class="nav-brand">
+        <div class="logo-mark">B</div>
+        <span>BoltProof</span>
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="#services">Services</a>
-        <a href="#synology">Synology</a>
-        <a href="#how">How It Works</a>
-        <a href="#scenarios">Scenarios</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-        <a href="https://cal.com/boltproof" class="btn btn-primary">Book a consultation</a>
-        <button type="button" class="theme-toggle" id="themeToggle">
-          <span id="themeIcon">🌙</span>
-          <span id="themeLabel">Dark</span>
-        </button>
+        <a href="#features">Capabilities</a>
+        <a href="#process">Process</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#blog">Blog</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#demo-cta">Live Demo</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://cal.com/boltproof" class="btn btn-ghost" target="_blank" rel="noopener">Discovery Call</a>
+        <a href="https://wa.me/971585109454" class="btn btn-primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.2-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.033-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M12.002 2C5.795 2 .998 6.796.998 13.003c0 2.096.547 4.142 1.586 5.945L1 22.792l3.999-1.049a10.04 10.04 0 005.003 1.316c6.207 0 11.004-4.797 11.004-11.004C23.006 6.796 18.209 2 12.002 2"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Dubai-based · Serving clients globally via remote SSH
+        </div>
+        <h1>The world's premier<br><span class="gradient-text">Synology consultancy</span></h1>
+        <p class="subtitle">
+          We design, build, secure, and maintain Synology NAS environments that keep your business data
+          protected, accessible, and performant — without the overhead of a full-time IT team.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://cal.com/boltproof" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+            Book a free discovery call
+          </a>
+          <a href="#demo-cta" class="btn btn-secondary btn-lg">
+            Experience a live NAS
+          </a>
+        </div>
+        <div class="trust-signals">
+          <div class="trust-card">
+            <div class="stat">10<span class="accent">+</span></div>
+            <div class="label">years of experience</div>
+          </div>
+          <div class="trust-card">
+            <div class="stat">500<span class="accent">+</span></div>
+            <div class="label">NAS deployments</div>
+          </div>
+          <div class="trust-card">
+            <div class="stat">99.99<span class="accent">%</span></div>
+            <div class="label">client uptime maintained</div>
+          </div>
+          <div class="trust-card">
+            <div class="stat">0</div>
+            <div class="label">data losses under our care</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </section>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
     <div class="container">
-      <div class="hero-inner">
-        <div>
-          <div class="hero-card-shell">
-            <div class="hero-tag">Small environments · Solid foundations</div>
-            <h1>Calm, secure technology for small businesses and home offices.</h1>
-            <p class="muted">
-              BoltProof designs and manages Synology environments, backup, storage, networking,
-              Microsoft 365, websites, domains and remote access – so your digital world quietly stays under control.
-            </p>
-            <ul class="hero-points">
-              <li>✔ Deep expertise in Synology NAS design, backup and off-site replication.</li>
-              <li>✔ Stable networks and remote access without unnecessary complexity.</li>
-              <li>✔ Simple websites, domains and domain-based email set up correctly from day one.</li>
-            </ul>
-            <div class="hero-actions">
-              <a href="https://cal.com/boltproof" class="btn btn-primary">Book a consultation</a>
-              <a href="https://wa.me/971585109454" class="btn btn-ghost">WhatsApp: +971 58 510 9454</a>
-            </div>
+      <div class="section-header reveal">
+        <div class="section-label">Services</div>
+        <h2>Everything your Synology needs — from first boot to forever</h2>
+        <p>Whether you're setting up your first NAS or managing a fleet across multiple offices, we handle the full lifecycle so you can focus on your business.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/><circle cx="7" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="7" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
+          <h3>Synology Setup & Lifecycle</h3>
+          <p>Hardware selection, unboxing, RAID configuration, storage pool design, DSM installation, and initial deployment. We handle model selection, expansion planning, and DSM updates so your NAS runs optimally from day one through year ten.</p>
         </div>
-        <div class="hero-side">
-          <div class="hero-card">
-            <div class="badge">What BoltProof covers</div>
-            <ul>
-              <li>Synology NAS setup & lifecycle management</li>
-              <li>Backup & recovery design and testing</li>
-              <li>Networking & secure remote access</li>
-              <li>Microsoft 365 & email infrastructure</li>
-              <li>Simple websites, domains & DNS</li>
-              <li>Cloud workflows & general IT guidance</li>
-            </ul>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-6.219-8.56" stroke-linecap="round"/><path d="M12 3v6l4 2" stroke-linecap="round"/></svg>
           </div>
-          <div class="hero-card">
-            <div class="badge">Core stack</div>
-            <div class="stack-row">
-              <div class="stack-pill"><span>🧊</span> Synology & NAS</div>
-              <div class="stack-pill"><span>📧</span> Microsoft 365 & Email</div>
-              <div class="stack-pill"><span>🌐</span> Domains & DNS</div>
-              <div class="stack-pill"><span>📡</span> Networking & Remote Access</div>
-            </div>
+          <h3>Backup & Recovery Design</h3>
+          <p>3-2-1 backup strategy, snapshot scheduling, versioning retention, off-site replication, and disaster recovery runbooks. We design multi-layered protection so you can restore any file — or your entire system — in minutes, not days.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
           </div>
+          <h3>Networking & Secure Remote Access</h3>
+          <p>VLAN segmentation, Tailscale/WireGuard VPN tunnels, DNS configuration, reverse proxies, and secure remote access for distributed teams. Access your NAS from anywhere without exposing it to the internet.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Security Hardening</h3>
+          <p>Firewall rules, 2FA enforcement, certificate management, DSM security audit, vulnerability patching, access control reviews, and ransomware-resistant architecture. We lock down your NAS against the threats that matter.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <h3>Ongoing Care Retainer</h3>
+          <p>Monthly health checks, DSM updates, security patches, backup verification, capacity planning, and priority support. Your NAS gets the attention of a dedicated specialist without the cost of a full-time hire.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round"/><circle cx="6" cy="7" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="17" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Hardware Consultation</h3>
+          <p>Model selection, capacity planning, drive recommendations (HDD vs NVMe caching), expansion units, and upgrade paths. We help you buy the right hardware the first time — no costly re-purchases or underpowered setups.</p>
         </div>
       </div>
-      <div class="scroll-down-wrapper">
-        <a href="#about" class="scroll-down" aria-label="Scroll to About section">
-          <span class="scroll-down-arrow"></span>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES / TOP 10 ===== -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Capabilities</div>
+        <h2>10 things your Synology can do for your business</h2>
+        <p>A Synology NAS is far more than a hard drive on your network. Here's what a properly configured system delivers — and what we set up for you.</p>
+      </div>
+      <div class="features-grid" id="featuresGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Process</div>
+        <h2>From first conversation to ongoing care</h2>
+        <p>A clear, proven engagement model that ensures nothing falls through the cracks.</p>
+      </div>
+      <div class="process-timeline" id="processTimeline"></div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Testimonials</div>
+        <h2>Trusted by businesses who can't afford downtime</h2>
+        <p>Representative client experiences from our engagement history.</p>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== DEMO CTA ===== -->
+  <section id="demo-cta">
+    <div class="container">
+      <div class="demo-cta-box reveal">
+        <div class="demo-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+        </div>
+        <h2>Experience a live Synology NAS</h2>
+        <p>Don't just read about it — try it yourself. Explore a real DSM environment, navigate the interface, test file shares, and see what a professionally configured Synology looks like before you commit to anything.</p>
+        <a href="https://demo.boltproof.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          Launch live demo →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section-alt">
+  <!-- ===== BLOG ===== -->
+  <section id="blog">
     <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">BoltProof</div>
-        <h2>Who we are</h2>
-        <div class="section-underline"></div>
-        <p>
-          BoltProof is a specialist practice focused on small-environment infrastructure:
-          Synology, backup, storage, networking, Microsoft 365 and core internet services.
-          The goal is simple – stable, secure systems that quietly do their job.
-        </p>
+      <div class="section-header reveal">
+        <div class="section-label">Blog</div>
+        <h2>Insights & guides from the field</h2>
+        <p>Practical, vendor-neutral advice on storage, backup, and infrastructure.</p>
       </div>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-icon">🧩</div>
-          <h3>Approach</h3>
-          <p>
-            Every environment is treated as a small system: data, devices, identity, network and cloud.
-            Before anything is changed, BoltProof maps how things currently work, where the risks are,
-            and what “good” looks like for that specific setup.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛡️</div>
-          <h3>Principles</h3>
-          <p>
-            Security before convenience. Reliability over novelty. Minimal attack surface.
-            Clear, documented foundations, not guesswork. BoltProof focuses on predictable, well-structured
-            environments rather than quick fixes or one-off hacks.
-          </p>
-        </div>
-      </div>
+      <div class="blog-grid" id="blogGrid"></div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services">
+  <!-- ===== PRICING ===== -->
+  <section id="pricing">
     <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">Services</div>
-        <h2>What BoltProof does</h2>
-        <div class="section-underline"></div>
-        <p>
-          Services are built around the core technical foundations that small environments depend on:
-          resilient storage, clean identity and email, robust networking, and clear backup and recovery paths.
-        </p>
+      <div class="section-header reveal">
+        <div class="section-label">Pricing</div>
+        <h2>Fixed-fee projects + care retainer</h2>
+        <p>No hourly billing, no surprise invoices. You know the cost before we start.</p>
       </div>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">💾</div>
-          <h3>Backup & Recovery</h3>
-          <p>
-            Backup strategy design for small environments: encrypted local and remote backup flows, snapshots,
-            ransomware-resilient policies and regular test restores so recovery is proven, not assumed.
-          </p>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="plan-tag">Discovery</div>
+          <div class="plan-price">Free</div>
+          <div class="plan-desc">30-minute consultation to understand your needs</div>
+          <ul>
+            <li>Current infrastructure review</li>
+            <li>Goals & requirements assessment</li>
+            <li>Hardware recommendations</li>
+            <li>Project scope & fixed quote</li>
+            <li>No obligation, no pressure</li>
+          </ul>
+          <a href="https://cal.com/boltproof" class="btn btn-secondary" target="_blank" rel="noopener">Book discovery call</a>
         </div>
-        <div class="card">
-          <div class="card-icon">📂</div>
-          <h3>NAS & Storage Architecture</h3>
-          <p>
-            Planning and maintenance of Synology, QNAP or TrueNAS setups: SHR/RAID layouts, share design,
-            access control, storage growth planning and integration with existing devices and cloud services.
-          </p>
+        <div class="pricing-card featured reveal">
+          <div class="plan-tag">Project Setup</div>
+          <div class="plan-price">$1,500<span class="unit">+</span></div>
+          <div class="plan-desc">Complete Synology deployment from scratch</div>
+          <ul>
+            <li>Hardware selection & procurement guidance</li>
+            <li>RAID & storage pool configuration</li>
+            <li>3-2-1 backup design & deployment</li>
+            <li>Security hardening & VPN setup</li>
+            <li>Team training & documentation handover</li>
+          </ul>
+          <a href="https://cal.com/boltproof" class="btn btn-primary" target="_blank" rel="noopener">Get started</a>
         </div>
-        <div class="card">
-          <div class="card-icon">🧊</div>
-          <h3>Synology Environments</h3>
-          <p>
-            Specialist Synology design and management: model selection, drive planning, DSM hardening,
-            snapshots, off-site replication, secure access and long-term lifecycle care for the platform.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📡</div>
-          <h3>Networking & Remote Access</h3>
-          <p>
-            Router and Wi-Fi optimisation, sensible network layouts, secure VPN and remote access,
-            multi-site connectivity and stabilising unreliable or fragile networks.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📧</div>
-          <h3>Microsoft 365 & Email</h3>
-          <p>
-            Tenant setup and alignment, domain and DNS configuration, Zoho Mail, Outlook and Gmail integrations,
-            email deliverability tuning and structured use of shared mailboxes and identities.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">☁️</div>
-          <h3>Cloud & Remote Workflows</h3>
-          <p>
-            OneDrive, Google Drive and Dropbox alignment, cloud-to-local backup strategies and
-            secure multi-device workflows for small teams and individuals.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌐</div>
-          <h3>Website, Domain & Email Setup</h3>
-          <p>
-            Simple, modern brochure-style websites; domain registration and DNS;
-            domain-based email using Zoho Mail, Microsoft 365 or Google Workspace – all configured cleanly.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛠️</div>
-          <h3>Advisory & Troubleshooting</h3>
-          <p>
-            Support for failed backups, misconfigured NAS, Wi-Fi issues, email problems, slow systems
-            and general IT hygiene questions in small environments.
-          </p>
+        <div class="pricing-card reveal">
+          <div class="plan-tag">Care Retainer</div>
+          <div class="plan-price">$295<span class="unit">/mo</span></div>
+          <div class="plan-desc">Ongoing maintenance & priority support</div>
+          <ul>
+            <li>Monthly health check & reports</li>
+            <li>DSM & package updates</li>
+            <li>Backup verification & monitoring</li>
+            <li>Security patch management</li>
+            <li>Priority WhatsApp & email support</li>
+          </ul>
+          <a href="https://cal.com/boltproof" class="btn btn-secondary" target="_blank" rel="noopener">Start retainer</a>
         </div>
       </div>
+      <p class="pricing-note">
+        Project pricing varies based on complexity, number of sites, and integration requirements. You'll receive a fixed quote after the discovery call — no hourly billing, no scope creep, no surprises.
+      </p>
     </div>
   </section>
 
-  <!-- SYNOLOGY SPECIALIST -->
-  <section id="synology" class="section-alt">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">Synology</div>
-        <h2>Synology specialist</h2>
-        <div class="section-underline"></div>
-        <p>
-          Synology is one of BoltProof’s core strengths. The focus is on well-architected, secure
-          and recoverable Synology deployments that integrate with the rest of the environment rather
-          than sit in isolation.
-        </p>
-      </div>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3>Design & setup</h3>
-          <p>
-            Planning and deploying Synology NAS from scratch – model and drive selection,
-            SHR/RAID layouts, folder structures, access models and secure remote connectivity,
-            all aligned to how the environment actually operates.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧬</div>
-          <h3>Backup & resilience</h3>
-          <p>
-            Local and remote backups, snapshot replication, versioning strategies and ransomware-aware
-            designs, combined with regular test restores to confirm that recovery paths are valid.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Ongoing care & optimisation</h3>
-          <p>
-            Monitoring, DSM updates, security hardening, off-site replication checks, storage expansion
-            planning and performance tuning as data and usage patterns evolve.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">Process</div>
-        <h2>How it works</h2>
-        <div class="section-underline"></div>
-        <p>
-          Engagements follow a structured, engineering-led path rather than ad-hoc fixes.
-          The aim is to leave each environment more understandable, more predictable and easier to support.
-        </p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-content">
-            <h3>Discovery & conversation</h3>
-            <p>
-              Initial call or WhatsApp discussion to map out the current environment, key systems and primary risks.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-content">
-            <h3>Assessment</h3>
-            <p>
-              A focused review of Synology, backup, storage, networking, identity and cloud usage, identifying
-              weak points and inconsistencies.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-content">
-            <h3>Design & plan</h3>
-            <p>
-              A tailored design that fits the environment’s size and risk tolerance – not a generic template.
-              This includes target backup shape, storage layout and access patterns.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-content">
-            <h3>Implementation</h3>
-            <p>
-              Careful, documented changes across backups, storage, networking, domains, email and remote access,
-              with an emphasis on reversibility and minimal disruption.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-content">
-            <h3>Ongoing support</h3>
-            <p>
-              Continued support and periodic reviews where required, ensuring the environment remains aligned
-              with how it is actually used day to day.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ENGAGEMENT MODELS -->
-      <div class="section-kicker" style="text-align:center;margin-top:56px;">Engagement</div>
-      <h2 style="text-align:center;">Ways to work together</h2>
-      <div class="grid-2" style="margin-top:28px;">
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3>Fixed-fee projects</h3>
-          <p>
-            For one-off, well-defined work: a new Synology build, a backup overhaul,
-            a network clean-up, a domain and email migration. After the free discovery call
-            you receive a fixed scope and a fixed price — no time tracking, no surprises.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔄</div>
-          <h3>Monthly care retainer</h3>
-          <p>
-            For environments that matter day to day: monitoring, DSM and security updates,
-            backup verification with test restores, and a direct line when something breaks.
-            One predictable monthly fee.
-          </p>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:36px;">
-        <p class="muted">
-          Every engagement starts with a free discovery call — no obligation, and if BoltProof
-          is not the right fit you will get a straight answer and a useful pointer.
-        </p>
-        <div class="hero-actions" style="justify-content:center;">
-          <a href="https://cal.com/boltproof" class="btn btn-primary">Book a free discovery call</a>
-          <a href="https://wa.me/971585109454" class="btn btn-ghost">WhatsApp: +971 58 510 9454</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCENARIOS -->
-  <section id="scenarios" class="section-alt">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">Use cases</div>
-        <h2>Typical scenarios</h2>
-        <div class="section-underline"></div>
-        <p>
-          BoltProof focuses on small but important environments where data loss or downtime would be painful,
-          but full enterprise tooling would be overkill.
-        </p>
-      </div>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">🏠</div>
-          <h3>Home office environments</h3>
-          <p>
-            Multi-device backups, encrypted storage, stable Wi-Fi, secure remote access, structured folders
-            and domain-based email for professional communication from a home base.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏢</div>
-          <h3>Small businesses</h3>
-          <p>
-            Centralised storage, controlled staff access, reliable email, simple internal sites or portals
-            and documented backup and recovery expectations for owners and key staff.
-          </p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👨‍👩‍👧‍👦</div>
-          <h3>Personal & family setups</h3>
-          <p>
-            Document and photo archiving, private cloud access, clean domain email addresses,
-            shared family storage and practical, easy-to-use security for non-technical users.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">FAQ</div>
-        <h2>Questions, answered</h2>
-        <div class="section-underline"></div>
-        <p>Straight answers to the questions BoltProof hears most often from small businesses and home offices.</p>
-      </div>
-      <div style="max-width:820px;margin:0 auto;">
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">Do you work with existing setups, or only new ones?</summary>
-          <p class="muted" style="margin-top:10px;">Both. Most engagements start with an environment that already exists — a NAS that was never set up properly, backups that have quietly stopped working, or a network nobody trusts. BoltProof structures, secures and documents what is there, and also designs new systems from scratch.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">Do you sell the hardware, or just the know-how?</summary>
-          <p class="muted" style="margin-top:10px;">BoltProof is a services practice. Part of the design work is recommending the exact model and drives for your needs — purchases are made directly, so there is no vendor lock-in and no markup on equipment.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">Is this remote or on-site?</summary>
-          <p class="muted" style="margin-top:10px;">Remote-first: most Synology, backup and network work can be done securely over a remote connection, and day-to-day support runs over WhatsApp. Based in Dubai — on-site visits can be arranged in the UAE where a physical visit genuinely helps.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">Why a NAS instead of Google Drive or iCloud?</summary>
-          <p class="muted" style="margin-top:10px;">Your own storage, once, with no per-seat fees as data grows: RAID and snapshots built in, and the cloud becomes a copy rather than the only copy. For many small environments the right answer is NAS plus a cloud copy — mapping what fits is what the discovery call is for.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">My backups have been failing — or I do not have any. Can you help?</summary>
-          <p class="muted" style="margin-top:10px;">Yes — that is a common starting point. BoltProof assesses the current state, stabilises it, and puts in place encrypted local and remote backups whose recovery is proven by regular test restores, not assumed.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">What happens if ransomware hits or a drive dies?</summary>
-          <p class="muted" style="margin-top:10px;">The design assumes it will happen eventually: offline and remote copies, snapshots, a minimal attack surface, and a documented restore path that has actually been tested. You will not be discovering your recovery plan for the first time on the day you need it.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">Do you handle email, domains and websites too?</summary>
-          <p class="muted" style="margin-top:10px;">Yes. Domain and DNS configuration, domain-based email on Zoho, Microsoft 365 or Google Workspace, simple brochure websites, and Microsoft 365 tenant setup are all part of the stack BoltProof manages as one system.</p>
-        </details>
-        <details class="card" style="padding:18px 24px;margin-bottom:14px;">
-          <summary style="cursor:pointer;font-weight:600;">How quickly can we start?</summary>
-          <p class="muted" style="margin-top:10px;">The free discovery call is usually booked within a few days — via <a href="https://cal.com/boltproof">cal.com/boltproof</a> or WhatsApp. Most assessments begin within the same week.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
+  <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
-        <div class="section-kicker">Contact</div>
-        <h2>Contact BoltProof</h2>
-        <div class="section-underline"></div>
-        <p>
-          For help with Synology, backups, storage, networking, Microsoft 365,
-          websites, domains or general small-environment IT, use the details below.
-        </p>
+      <div class="section-header reveal">
+        <div class="section-label">Contact</div>
+        <h2>Let's talk about your setup</h2>
+        <p>Free discovery call. No pressure, no jargon — just straight answers about your infrastructure.</p>
       </div>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-icon">📬</div>
-          <h3>Contact details</h3>
-          <p><strong>Email:</strong> <a href="mailto:elias@boltproof.com">elias@boltproof.com</a></p>
-          <p><strong>Book a call:</strong> <a href="https://cal.com/boltproof">cal.com/boltproof</a></p>
-          <p><strong>WhatsApp:</strong> <a href="https://wa.me/971585109454">+971 58 510 9454</a></p>
-          <p>Based in Dubai. Remote support is available worldwide for most cases, and on-site visits can be arranged in the UAE where appropriate.</p>
+      <div class="contact-grid">
+        <a href="https://wa.me/971585109454" class="contact-card reveal" target="_blank" rel="noopener">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.96-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.2-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.033-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c0 5.45-4.437 9.885-9.885 9.885M12.002 2C5.795 2 .998 6.796.998 13.003c0 2.096.547 4.142 1.586 5.945L1 22.792l3.999-1.049a10.04 10.04 0 005.003 1.316c6.207 0 11.004-4.797 11.004-11.004C23.006 6.796 18.209 2 12.002 2" fill="currentColor"/></svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <div class="contact-detail">Fastest response — message us anytime<br>+971 58 510 9454</div>
+          <div class="contact-action">Open WhatsApp →</div>
+        </a>
+        <a href="mailto:elias@boltproof.com" class="contact-card reveal">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7L22 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Email</h3>
+          <div class="contact-detail">For detailed inquiries<br>elias@boltproof.com</div>
+          <div class="contact-action">Send email →</div>
+        </a>
+        <a href="https://cal.com/boltproof" class="contact-card reveal" target="_blank" rel="noopener">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Book a Call</h3>
+          <div class="contact-detail">Free 30-minute discovery call<br>cal.com/boltproof</div>
+          <div class="contact-action">Schedule →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-brand">
+            <div class="logo-mark">B</div>
+            <span>BoltProof</span>
+          </a>
+          <p>The world's premier Synology consultancy. Dubai-based, serving clients globally via secure remote access. Your data, protected.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">📝</div>
-          <h3>What helps in an initial message</h3>
-          <p>It is useful to include:</p>
+        <div class="footer-col">
+          <h4>Services</h4>
           <ul>
-            <li>Whether the environment is home office, small business or personal/family</li>
-            <li>The main concerns (backup, storage, email, website, network, access, etc.)</li>
-            <li>Any existing Synology, NAS, cloud or backup tools currently in use</li>
+            <li><a href="#services">Synology Setup</a></li>
+            <li><a href="#services">Backup & Recovery</a></li>
+            <li><a href="#services">Security Hardening</a></li>
+            <li><a href="#services">Care Retainer</a></li>
+            <li><a href="#services">Hardware Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#features">Capabilities</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#demo-cta">Live Demo</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/971585109454" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:elias@boltproof.com">Email</a></li>
+            <li><a href="https://cal.com/boltproof" target="_blank" rel="noopener">Book a Call</a></li>
+            <li><a href="https://demo.boltproof.com" target="_blank" rel="noopener">Live Demo</a></li>
           </ul>
         </div>
       </div>
+      <div class="footer-bottom">
+        <p>© 2026 BoltProof. All rights reserved.</p>
+        <p>Dubai, United Arab Emirates · Serving clients worldwide</p>
+      </div>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>
-  <div class="container">
-    <div class="footer-row">
-      <div>© <span id="year"></span> BoltProof. All rights reserved.</div>
-      <div>Powered by BoltProof – secure backup, storage & Synology-first IT.</div>
-    </div>
-    <div class="footer-privacy">
-      <strong>Privacy & Cookies:</strong> BoltProof uses only essential cookies for basic site functionality. No tracking or analytics cookies are used.
-    </div>
-  </div>
-</footer>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // --- Features data (Top 10) ---
+    const features = [
+      { num: '01', icon: '<svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z"/><path d="M3 7l9 7 9-7"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>', title: 'Centralized File Storage', desc: 'One shared home for every team file. SMB, AFP, and NFS shares let Windows, Mac, and Linux access the same files seamlessly — no more scattered local copies or email attachments.' },
+      { num: '02', icon: '<svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-6.219-8.56"/><path d="M12 3v6l4 2"/></svg>', title: 'Automated Backup & Snapshots', desc: 'Point-in-time snapshots every 15 minutes, automated backups to external drives and cloud, and version retention that lets you rewind any file to any moment. Ransomware recovery in minutes.' },
+      { num: '03', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>', title: 'Docker / Container Management', desc: 'Run 100+ self-hosted apps via Container Manager. Pi-hole, Home Assistant, Nextcloud, Vaultwarden, code servers — your NAS becomes a private cloud platform, not just a file server.' },
+      { num: '04', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24"/></svg>', title: 'Surveillance Station (NVR)', desc: 'Turn your NAS into a professional video surveillance system. Up to 90+ IP cameras, AI motion detection, timeline scrubbing, and 30-day rolling storage — all on hardware you already own.' },
+      { num: '05', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="16" rx="1"/></svg>', title: 'Virtual Machine Manager', desc: 'Run full Windows, Linux, and macOS VMs directly on your NAS. Dev/test environments, legacy application hosting, or a complete virtualization stack — managed through the DSM interface.' },
+      { num: '06', icon: '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>', title: 'Secure Remote Access (Tailscale / WireGuard)', desc: 'Access your NAS from anywhere in the world through an encrypted mesh VPN. No port forwarding, no exposed public IPs — just zero-trust access that works on any network, on any device.' },
+      { num: '07', icon: '<svg viewBox="0 0 24 24"><path d="M18 10a6 6 0 00-11.9-1M6 14a6 6 0 0011.9 1"/><path d="M18 10v-3M6 14v3"/><circle cx="18" cy="7" r="1" fill="currentColor" stroke="none"/><circle cx="6" cy="17" r="1" fill="currentColor" stroke="none"/></svg>', title: 'Cloud Sync (Google Drive, OneDrive, Dropbox, Backblaze)', desc: 'Two-way sync with the cloud providers you already use. Hybrid cloud backup to Backblaze B2, S3-compatible storage, or Azure — giving you both local speed and off-site redundancy.' },
+      { num: '08', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>', title: 'Active Directory / LDAP', desc: 'Centralize user management with Active Directory or Synology\'s built-in LDAP server. Single sign-on, group policies, and permission management across all your systems and applications.' },
+      { num: '09', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>', title: 'MailPlus — Self-Hosted Email', desc: 'Run your own mail server with full webmail, calendar, and contacts. No more per-seat SaaS email costs. Full control, full privacy, and enterprise-grade features including spam filtering and calendar sharing.' },
+      { num: '10', icon: '<svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>', title: 'SSD Caching & Performance Tuning', desc: 'NVMe SSD caching accelerates random I/O by 10x. We tune storage tiers, memory allocation, and network MTU to squeeze maximum performance from your hardware investment.' },
+    ];
 
-<!-- Floating WhatsApp button -->
-<a href="https://wa.me/971585109454" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+    // --- Process steps ---
+    const processSteps = [
+      { num: 1, title: 'Discovery', desc: 'Free 30-min call. We listen, assess, and recommend.' },
+      { num: 2, title: 'Assessment', desc: 'Audit your current setup and document every requirement.' },
+      { num: 3, title: 'Build', desc: 'Procure, configure, and deploy your Synology environment.' },
+      { num: 4, title: 'Secure', desc: 'Harden, encrypt, and verify your backup & recovery plan.' },
+      { num: 5, title: 'Handover', desc: 'Train your team and deliver full documentation.' },
+      { num: 6, title: 'Ongoing Care', desc: 'Monthly health checks, updates, and priority support.' },
+    ];
 
-<script>
-  // Year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
+    // --- Testimonials ---
+    const testimonials = [
+      { stars: 5, body: '"Our previous IT provider had us on an hourly contract — every question felt like it was costing money. BoltProof came in with a fixed-fee project, deployed our Synology in a week, and the care retainer has been worth every dirham. Backups just work now."', initials: 'AG', name: 'Operations Director', role: 'Mid-size law firm · Dubai', rep: true },
+      { stars: 5, body: '"We had a ransomware scare last year that would have been catastrophic. BoltProof had already configured snapshots and off-site replication — we were back up in 15 minutes. I sleep better knowing they\'re watching our systems."', initials: 'MK', name: 'Managing Partner', role: 'Architecture practice · London', rep: true },
+      { stars: 5, body: '"I needed a NAS setup for a remote team across three countries. BoltProof designed the whole thing — Tailscale access, permission groups, automated backups to Backblaze. The handover documentation was so thorough my team barely needed support after week one."', initials: 'SR', name: 'Technical Lead', role: 'Distributed software team · Remote', rep: true },
+    ];
 
-  // Light/Dark theme toggle with localStorage + system preference
-  (function() {
-    const prefersDark = window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const stored = localStorage.getItem('boltproof-theme');
-    const body = document.body;
+    // --- Blog posts ---
+    const blogPosts = [
+      { tag: 'Strategy', title: 'Why your business needs on-prem storage in 2026', excerpt: 'The cloud promised infinite scale and zero maintenance. A decade in, the bills keep climbing, the lock-in deepens, and the data breaches make headlines. Here\'s why on-prem NAS is having a renaissance — and why your finance team will thank you.', url: 'blog/why-on-prem-storage-2026.html' },
+      { tag: 'Cost Analysis', title: 'Synology vs cloud: the total cost of ownership', excerpt: 'A 10TB dataset in AWS S3 costs $2,300/year. The same data on a Synology RS1221+ costs $1,800 once. We break down the real numbers — storage, egress, support, and the hidden costs nobody puts in the marketing page.', url: 'blog/synology-vs-cloud-tco.html' },
+      { tag: 'Security', title: 'Securing your NAS: a 12-point checklist', excerpt: 'A Synology on the open internet is a target. A properly hardened Synology is a fortress. We walk through the 12 security configurations every deployment needs — from 2FA to firewall rules to backup air-gapping.', url: 'blog/securing-your-nas-12-point-checklist.html' },
+    ];
 
-    if (stored === 'dark' || (!stored && prefersDark)) {
-      body.classList.add('dark');
-    }
+    // --- Render features ---
+    const featuresGrid = document.getElementById('featuresGrid');
+    features.forEach(f => {
+      featuresGrid.insertAdjacentHTML('beforeend', `
+        <div class="feature-card reveal">
+          <span class="feature-number">${f.num}</span>
+          <div class="feature-icon">${f.icon}</div>
+          <h3>${f.title}</h3>
+          <p>${f.desc}</p>
+        </div>
+      `);
+    });
 
-    const btn = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const label = document.getElementById('themeLabel');
+    // --- Render process ---
+    const processTimeline = document.getElementById('processTimeline');
+    processSteps.forEach(s => {
+      processTimeline.insertAdjacentHTML('beforeend', `
+        <div class="process-step reveal">
+          <div class="step-num">${s.num}</div>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+        </div>
+      `);
+    });
 
-    function syncLabel() {
-      const isDark = body.classList.contains('dark');
-      icon.textContent = isDark ? '☀️' : '🌙';
-      label.textContent = isDark ? 'Light' : 'Dark';
-    }
+    // --- Render testimonials ---
+    const testimonialsGrid = document.getElementById('testimonialsGrid');
+    testimonials.forEach(t => {
+      let stars = '';
+      for (let i = 0; i < t.stars; i++) stars += '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>';
+      testimonialsGrid.insertAdjacentHTML('beforeend', `
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">${stars}</div>
+          <p class="testimonial-body">${t.body}</p>
+          <div class="testimonial-author">
+            <div class="avatar">${t.initials}</div>
+            <div>
+              <div class="name">${t.name}</div>
+              <div class="role">${t.role}</div>
+              ${t.rep ? '<div class="testimonial-rep">Representative client experience</div>' : ''}
+            </div>
+          </div>
+        </div>
+      `);
+    });
 
-    syncLabel();
+    // --- Render blog ---
+    const blogGrid = document.getElementById('blogGrid');
+    blogPosts.forEach(b => {
+      blogGrid.insertAdjacentHTML('beforeend', `
+        <a href="${b.url}" class="blog-card reveal">
+          <span class="blog-tag">${b.tag}</span>
+          <h3>${b.title}</h3>
+          <p>${b.excerpt}</p>
+          <span class="blog-read">Read article →</span>
+        </a>
+      `);
+    });
 
-    if (btn) {
-      btn.addEventListener('click', function() {
-        body.classList.toggle('dark');
-        const isDark = body.classList.contains('dark');
-        localStorage.setItem('boltproof-theme', isDark ? 'dark' : 'light');
-        syncLabel();
+    // --- Header scroll effect ---
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // --- Mobile nav toggle ---
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('mobile-open'));
+    });
+
+    // --- Scroll reveal ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
       });
-    }
-  })();
-</script>
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
